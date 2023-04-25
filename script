@@ -1,0 +1,45 @@
+#instalando os pacotes que vamos usar
+install.packages("sp")
+install.packages("dismo")
+install.packages("raster")
+install.packages("maptools")
+install.packages("rgeos")
+install.packages("sf")
+
+#abrindo os pacotes que vamos utilizar
+library(sp)
+library(raster)
+library(dismo)
+library(maptools)
+library(rgeos)
+library(sf)
+library(ggplot2)
+
+#abrindo o mapa mundial
+data(wrld_simpl)
+
+#plotando o mapa mundial
+plot(wrld_simpl)
+
+#abrindo o arquivo com os pontos
+sp_dat <- read.csv("C:/Users/Julia/Documents/analises_sisyrinchium/Modelagem/marginatum.csv")
+sp_dat2 <- read.csv("C:/Users/Julia/Documents/analises_sisyrinchium/Modelagem/coordmarchio.csv")
+
+## ajustando o mapa
+
+#essa função serve para abrir o mapa em outra aba
+windows(width=6, height=6, rescale="fixed")
+
+#Aqui estamos cortando e protando o mapa, col é a cor de fundo
+plot(wrld_simpl, xlim=c(-80, -45), ylim=c(-40, 15),
+     axes=T, col="#779943") #também podemos fazer mapas usando as cores básicas como 'grey'
+
+# Plotando os pontos no mapa
+# Aqui col é a cor dos pontos, e pch é o tamanho 
+points(sp_dat, pch = 20, col = "#1C4042")
+
+
+# Plotando outra espécie
+
+#plotando os pontos
+points(sp_dat2, pch = 20, col = "#10A2A6")
